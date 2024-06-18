@@ -50,7 +50,7 @@ a{
     text-decoration: none;
     color:black
 }
-aside{
+/* aside{
     width: 20%;
     height: 100%;
     background-color: #eff1ef;
@@ -58,6 +58,17 @@ aside{
     padding-left: 5px;
     padding-bottom: 20px;
     border-right: 1px solid #ddd;
+} */
+aside {
+    width: 20%;
+    height: calc(100vh - 120px); /* Adjust the height as needed */
+    background-color: #eff1ef;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 20px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto; /* Add vertical scroll bar */
+    box-sizing: border-box;
 }
 
 aside ul {
@@ -86,38 +97,35 @@ aside ul li{
 }
 
 .section {
-    background-color: #F5F8CC;
-    padding: 50px;
+    background-color: #F5F8CC;    
+    margin-left: 150px;
+    margin-bottom: 20px;
+    margin-top: 10px;
     
-    margin: 50px;
-    margin-top: 0px;
-    margin-left: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center; 
     text-align: center; 
+    
 }
-section {
-    width: 100%;
-    padding: 5px;
-}
+
 section h2{
-    margin-top: 0px;
-    font-size:1.5em;
+    margin-top: 10px;
+    font-size:1.2em;
 }
 section img {
     width: 80%; 
     display: block;
-    margin-bottom: 10px;
+    
 }
 section button {
     background-color: #2d5f4e;
     color: white;
-    padding: 10px 20px;
-    margin-top: 50px;
-    margin-bottom: -20px;
+    padding: 10px 15 px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: none;
     cursor: pointer;
 }
@@ -125,8 +133,8 @@ section button:hover {
     background-color: #1e4634;
 }
 footer{
-    padding-top: 20px ;
-    padding-bottom: 20px ;
+    padding-top: 10px ;
+    padding-bottom: 10px ;
     background-color:#2d5f4e;
     text-align: center;
     color: #E1F2DB;
@@ -136,10 +144,9 @@ footer a{
 }
 .uni{
     font-weight:bolder;
-    font-size: larger;
+    font-size: large;
 }
 .weblink{
     font-weight:lighter;
     font-size: smaller;
-
 }
