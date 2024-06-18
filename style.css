@@ -135,5 +135,11 @@ footer a{
     color: #E1F2DB;
 }
 .uni{
-    font-weight:bolder
+    font-weight:bolder;
+    font-size: larger;
+}
+.weblink{
+    font-weight:lighter;
+    font-size: smaller;
+
 }
