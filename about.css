@@ -8,6 +8,7 @@ main {
     display: flex;
     padding: 0px;
 }
+
 header {
     background-color: #2d5f4e;
     color: white;
@@ -15,20 +16,23 @@ header {
     text-align: center;
     position: relative;
 }
+
 header h1 {
     margin: 0;
     margin-left: 50px;
     padding: 10px;
     text-align: left;
 }
-header .welcome{
+
+header .welcome {
     text-align: right;
     right: 20px;
     top: 20px;
     position: absolute;
-    font-weight:bold;
-    font-style:oblique;
+    font-weight: bold;
+    font-style: oblique;
 }
+
 nav{
     background-color: #E1F2DB;
     color: black;
@@ -50,24 +54,16 @@ a{
     text-decoration: none;
     color:black
 }
-/* aside{
-    width: 20%;
-    height: 100%;
-    background-color: #eff1ef;
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-bottom: 20px;
-    border-right: 1px solid #ddd;
-} */
+
 aside {
     width: 20%;
-    height: calc(100vh - 120px); /* Adjust the height as needed */
+    height: calc(100vh - 120px);
     background-color: #eff1ef;
     padding-right: 5px;
     padding-left: 5px;
     padding-bottom: 20px;
     border-right: 1px solid #ddd;
-    overflow-y: auto; /* Add vertical scroll bar */
+    overflow-y: auto;
     box-sizing: border-box;
 }
 
@@ -86,7 +82,6 @@ aside ul li{
 .links{
     background-color: #2d5f4e;
     width: 100%;
-    width: calc(100% + 6px);
     padding: 10px;
     margin-left: -20px;
     margin-right: -20px;
@@ -96,41 +91,47 @@ aside ul li{
     font-weight: bold;
 }
 
-.section {
-    background-color: #F5F8CC;    
-    margin-left: 150px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center; 
-    
+section {
+    width: 60%;
+    padding: 20px;
 }
 
-section h2{
-    margin-top: 10px;
-    font-size:1.2em;
+.content {
+    background-color: #F5F8CC;
+    padding: 20px;
+    box-sizing: border-box;
 }
-section img {
-    width: 80%; 
-    display: block;
-    
+
+.content h2 {
+    font-size: medium;
+    margin-top: 0;
 }
-section button {
+
+.content p {
+    font-size: 0.8em;
+}
+
+.demo {
+    width: 20%;
     background-color: #2d5f4e;
-    color: white;
-    padding: 10px 15 px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: none;
-    cursor: pointer;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    box-sizing: border-box;
 }
-section button:hover {
-    background-color: #1e4634;
+
+.demo h3 {
+    margin-top: 0;
+    color:#ffffff;
+    border-color: #E1F2DB;
+}
+
+.demo ul {
+    list-style: none;
+    padding: 0;
+}
+
+.demo ul li {
+    margin-bottom: 10px;
 }
 footer{
     padding-top: 10px ;
