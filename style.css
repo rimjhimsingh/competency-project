@@ -85,43 +85,55 @@ aside ul li{
     font-weight: bold;
 }
 
-.section{
-    background-color:#F5F8CC;
-    padding:50px;
-    margin: 50px;
-    position: relative;
-}
 .section {
     background-color: #F5F8CC;
     padding: 50px;
+    
     margin: 50px;
+    margin-top: 0px;
+    margin-left: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    text-align: center; /* Center text */
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
 }
 section {
     width: 100%;
-    padding: 20px;
+    padding: 5px;
 }
-section p{
-    font-size:1.2em;
+section h2{
+    margin-top: 0px;
+    font-size:1.5em;
 }
 section img {
-    width: 100%; /* Adjust width as needed */
-    height: auto;
+    width: 80%; 
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 section button {
     background-color: #2d5f4e;
     color: white;
     padding: 10px 20px;
+    margin-top: 50px;
+    margin-bottom: -20px;
     border: none;
     cursor: pointer;
 }
 section button:hover {
     background-color: #1e4634;
+}
+footer{
+    padding-top: 20px ;
+    padding-bottom: 20px ;
+    background-color:#2d5f4e;
+    text-align: center;
+    color: #E1F2DB;
+}
+footer a{
+    color: #E1F2DB;
+}
+.uni{
+    font-weight:bolder
 }
