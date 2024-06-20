@@ -1,0 +1,78 @@
+header {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: lighter;
+    font-size: larger;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial,
+      sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  main {
+    display: flex;
+    padding: 0px;
+  }
+  header {
+    background-color: #2d5f4e;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+  }
+  header h1 {
+    margin: 0;
+    margin-left: 50px;
+    padding: 10px;
+    text-align: left;
+  }
+  header .welcome {
+    text-align: right;
+    right: 20px;
+    top: 20px;
+    position: absolute;
+    font-weight: bold;
+    font-style: oblique;
+  }
+  nav {
+    background-color: #e1f2db;
+    color: black;
+    text-align: center;
+    padding: 2px;
+    font-size: small;
+  }
+  nav ul {
+    list-style: None;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 20px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #2d5f4e;
+    text-align: center;
+    color: #e1f2db;
+  }
+  footer a {
+    color: #e1f2db;
+  }
+  .uni {
+    font-weight: bolder;
+    font-size: large;
+  }
+  .weblink {
+    font-weight: lighter;
+    font-size: smaller;
+  }
+  
