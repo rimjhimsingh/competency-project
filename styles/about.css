@@ -76,19 +76,11 @@ aside ul {
   list-style: none;
   padding: 0;
 }
-aside ul li {
-  background-color: #ffffff;
-  margin-bottom: 5px;
-  font-size: small;
-  padding: 5px;
-  text-align: center;
-  border: 1px solid #afc2bc;
-}
+
 .links {
-  background-color: #2d5f4e;
+  background-color: #2d5f4ebb;
   width: 100%;
   padding: 10px;
-  margin-left: -20px;
   margin-right: -20px;
   color: #ffffff;
   text-align: center;
@@ -155,4 +147,30 @@ footer a {
 .weblink {
   font-weight: lighter;
   font-size: smaller;
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, font-weight 0.3s; /* Smooth transition for background and font weight changes */
+}
+
+nav ul li a:hover {
+  font-weight: bold; /* Makes the font bold */
+  background-color: #d7ebd4; /* A lighter shade for highlight */
+}
+aside button {
+  background-color: #ffffff; /* Green background */
+  color: rgb(0, 0, 0); /* White text */
+  border: 1px solid #c9c9c9; /* Solid green border */
+  padding: 10px 15px; /* Padding for size */
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 100%; /* Full width of the container */
+  text-align: center; /* Center the text */
+  font-size: small; /* Matching the size of the text in the list */
+  margin-bottom: 5px; /* Space below the button */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+aside button:hover {
+  background-color: #e3f5baa6; /* Darker shade on hover */
 }

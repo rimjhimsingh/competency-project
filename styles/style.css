@@ -5,8 +5,7 @@ header {
 }
 body {
   font-family: Arial, sans-serif;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
@@ -16,15 +15,17 @@ main {
   padding: 0px;
 }
 header {
+  display: flex;
   background-color: #2d5f4e;
   color: white;
   padding: 10px 0;
   text-align: center;
   position: relative;
+  grid-area: header;
 }
 header h1 {
   margin: 0;
-  margin-left: 50px;
+  margin-left: 0px;
   padding: 10px;
   text-align: left;
 }
@@ -56,9 +57,8 @@ a {
   text-decoration: none;
   color: black;
 }
-aside {
-  width: 20%;
-  height: calc(100vh - 120px);
+.aside {
+  height: calc(100vh);
   background-color: #eff1ef;
   padding-right: 5px;
   padding-left: 5px;
@@ -68,11 +68,11 @@ aside {
   box-sizing: border-box;
 }
 
-aside ul {
+.aside ul {
   list-style: none;
   padding: 0;
 }
-aside ul li {
+.aside ul li {
   background-color: #ffffff;
   margin-bottom: 5px;
   font-size: small;
@@ -94,47 +94,49 @@ aside ul li {
 }
 
 .section {
-  background-color: #f5f8cc;
-  margin-left: 150px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  position: relative;
+  background-color: #f8f9e7;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 20px; 
 }
 
 section h2 {
-  margin-top: 10px;
   font-size: 1.2em;
 }
 section img {
-  width: 80%;
+  width: 50%;
   display: block;
 }
 section button {
   background-color: #2d5f4e;
   color: white;
   padding: 10px 15px;
-  margin-top: 20px;
-  margin-bottom: 20px;
   border: none;
   cursor: pointer;
 }
-section a{
-    color: white;
+section a {
+  color: white;
 }
 section button:hover {
   background-color: #1e4634;
 }
 footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: footer;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #2d5f4e;
   text-align: center;
   color: #e1f2db;
+}
+footer p{
+  margin:0;
 }
 footer a {
   color: #e1f2db;
@@ -146,4 +148,61 @@ footer a {
 .weblink {
   font-weight: lighter;
   font-size: smaller;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.section {
+  grid-area: content;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: 80px 40px minmax(100px, auto) 120px;
+  grid-template-areas:
+    "header header header header header header header header header"
+    "nav nav nav nav nav nav nav nav nav"
+    " aside aside content content content content content content content"
+    "footer footer footer footer footer footer footer footer footer";
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, font-weight 0.3s; /* Smooth transition for background and font weight changes */
+}
+
+nav ul li a:hover {
+  font-weight: bold; /* Makes the font bold */
+  background-color: #d7ebd4; /* A lighter shade for highlight */
+}
+@media (max-width: 500px) {
+  body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;  
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;  
+    font-size: small; 
+    justify-content:center;
+    align-items: flex-start;
+    flex-basis: 100px;
+    min-width: 50px;
+    flex-shrink: 1;
+    order:0;
+
+  }
+
+  .welcome {
+    order: 1; 
+  }
 }
