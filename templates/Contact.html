@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="styles/contact.css" /> -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/contact.css') }}"
+    />
+    <style>
+      body {
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <a href="{{ url_for('index') }}" style="color: rgb(255, 255, 255)"
+            >Binghamton University</a>
+      </h1>
+      <div class="welcome"><p>Welcome Student!</p></div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div
+      class="visme_d"
+      data-title="Mobile Friendly Contact Form"
+      data-url="jwyn6kjq-mobile-friendly-contact-form"
+      data-domain="forms"
+      data-full-page="false"
+      data-min-height="500px"
+      data-form-id="76547"
+    ></div>
+    <script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script>
+  </body>
+  <footer>
+    <p class="uni">Decker College of Nurisng and Health Sciences<br /></p>
+    <p>Department of Physical Therapy<br /></p>
+    <p class="weblink">
+      <a href="https://www.binghamton.edu/decker/index.html"
+        >Vist our website</a
+      >
+    </p>
+  </footer>
+</html>

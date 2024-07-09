@@ -4,25 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binghamton University</title>
-    <link rel="stylesheet" href="styles/about.css">
+    <!-- <link rel="stylesheet" href="styles/about.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}" />
 </head>
 <body>
+    <div class="grid-container">
     <header>
-        <h1><a href="index.html" style="color: rgb(255, 255, 255);">Binghamton University</a></h1>
+        <h1><a href="{{ url_for('index') }}" style="color: rgb(255, 255, 255)"
+            >Binghamton University</a></h1>
         <div class="welcome"><p>Welcome Rimjhim!</p></div>
     </header>
     <nav>
         <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
         </ul>
     </nav>
     <main>
         <aside>
             <p class="links">Links</p>
             <ul>
-                <li><button onclick="location.href='index.html'">Comprehensive Graphs</button></li>
-                <li><button onclick="location.href='deviation.html'">Deviation Graphs</button></li>
+                <!-- <li><button onclick="location.href='templates/index.html'">Comprehensive Graphs</button></li>
+                <li><button onclick="location.href='templates/deviation.html'">Deviation Graphs</button></li> -->
+                <li><a href="{{ url_for('index') }}">Comprehensive Graphs</a></li>
+                <li><a href="{{ url_for('deviation') }}">Deviation Graphs</a></li>
 
               
             </ul>
@@ -51,5 +56,6 @@
           <p class="weblink"><a href="https://www.binghamton.edu/decker/index.html">Vist our website</a>
           </p> </p>
       </footer>
+      </div>
 </body>
 </html>

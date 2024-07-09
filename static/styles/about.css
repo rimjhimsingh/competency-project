@@ -1,8 +1,10 @@
+
 header {
   font-family: "Times New Roman", Times, serif;
   font-weight: lighter;
   font-size: larger;
 }
+
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial,
     sans-serif;
@@ -16,20 +18,20 @@ main {
 }
 
 header {
+  display: flex;
   background-color: #2d5f4e;
   color: white;
   padding: 10px 0;
   text-align: center;
   position: relative;
+  grid-area: header;
 }
-
 header h1 {
   margin: 0;
-  margin-left: 50px;
+  margin-left: 0px;
   padding: 10px;
   text-align: left;
 }
-
 header .welcome {
   text-align: right;
   right: 20px;
@@ -38,7 +40,6 @@ header .welcome {
   font-weight: bold;
   font-style: oblique;
 }
-
 nav {
   background-color: #e1f2db;
   color: black;
@@ -151,26 +152,28 @@ footer a {
 nav ul li a {
   text-decoration: none;
   color: black;
-  transition: background-color 0.3s, font-weight 0.3s; /* Smooth transition for background and font weight changes */
+  transition: background-color 0.3s, font-weight 0.3s;  
 }
 
 nav ul li a:hover {
-  font-weight: bold; /* Makes the font bold */
-  background-color: #d7ebd4; /* A lighter shade for highlight */
+  font-weight: bold;  
+  background-color: #d7ebd4;  
 }
-aside button {
-  background-color: #ffffff; /* Green background */
-  color: rgb(0, 0, 0); /* White text */
-  border: 1px solid #c9c9c9; /* Solid green border */
-  padding: 10px 15px; /* Padding for size */
-  cursor: pointer; /* Pointer cursor on hover */
-  width: 100%; /* Full width of the container */
-  text-align: center; /* Center the text */
-  font-size: small; /* Matching the size of the text in the list */
-  margin-bottom: 5px; /* Space below the button */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+aside ul li {
+  background-color: #ffffff;  
+  color: rgb(0, 0, 0);  
+  border: 1px solid #c9c9c9;  
+  padding: 10px 15px;  
+  cursor: pointer;  
+  width: 100%;  
+  text-align: center;  
+  font-size: small;  
+  margin-bottom: 5px; 
+  transition: background-color 0.3s;  
 }
 
-aside button:hover {
-  background-color: #e3f5baa6; /* Darker shade on hover */
+aside ul li:hover {
+  background-color: #e3f5baa6;  
 }
+
+

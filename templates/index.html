@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binghamton University</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!-- <h1>Enter Student ID to View Graph</h1>
+    <form action="/plot" method="post">
+        <input type="text" name="student_id" required>
+        <button type="submit">Submit</button>
+    </form> -->
+    <div class="grid-container">
+      <header class="header">
+        <h1>
+          <a href="{{ url_for('index') }}" style="color: rgb(255, 255, 255)"
+            >Binghamton University</a
+          >
+        </h1>
+        <div class="welcome"><p>Welcome Student!</p></div>
+      </header>
+      <nav class="nav">
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        <ul id="nav-links">
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+        </ul>
+      </nav>
+      <aside class="aside" id="side-menu">
+        <p class="links">Links to your graphs</p>
+        <ul>
+          <li>Competency 1</li>
+          <li>Competency 2</li>
+          <li>Competency 3</li>
+          <li>Competency 4</li>
+          <li>Competency 5</li>
+          <li>Competency 6</li>
+          <li>Competency 7</li>
+          <li>Competency 8</li>
+          <li>Competency 9</li>
+          <li>Competency 10</li>
+          <li>Competency 11</li>
+          <li>Competency 12</li>
+          <li>Competency 13</li>
+          <li>Competency 14</li>
+          <li>Competency 15</li>
+          <li>Competency 16</li>
+          <li>Competency 17</li>
+          <li>Competency 18</li>
+          <li>Competency 19</li>
+          <li>Competency 20</li>
+          <li>Competency 21</li>
+          <li>Competency 22</li>
+          <li>Competency 23</li>
+          <li>Competency 24</li>
+          <li>Competency 25</li>
+          <li>Competency 26</li>
+          <li>Competency 27</li>
+        </ul>
+      </aside>
+      <section class="section">
+        <h2>Comprehensive Graph</h2>
+        <div id="plotly-graph-container">{{ plot_html | safe }}</div>
+        <!-- <img src="{{ url_for('plot_png', student_id='student 1 BD') }}"> -->
+        <button><a href="{{ url_for('deviation') }}">Deviation Graphs</a></button>
+      </section>
+      <footer class="footer">
+        <p class="uni">Decker College of Nursing and Health Sciences<br /></p>
+        <p>Department of Physical Therapy<br /></p>
+        <p class="weblink">
+          <a href="https://www.binghamton.edu/decker/index.html"
+            >Visit our website</a
+          >
+        </p>
+      </footer>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const asideMenu = document.querySelector(".aside");
+
+        menuToggle.addEventListener("click", function () {
+          asideMenu.classList.toggle("open");
+          menuToggle.innerHTML = asideMenu.classList.contains("open")
+            ? "✕ Close"
+            : "☰ Menu";
+        });
+      });
+    </script>
+  </body>
+</html>

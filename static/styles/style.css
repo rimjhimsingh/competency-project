@@ -1,0 +1,341 @@
+
+header {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: lighter;
+  font-size: larger;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+main {
+  display: flex;
+  padding: 0px;
+}
+header {
+  display: flex;
+  background-color: #2d5f4e;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: relative;
+  grid-area: header;
+}
+header h1 {
+  margin: 0;
+  margin-left: 0px;
+  padding: 10px;
+  text-align: left;
+}
+header .welcome {
+  text-align: right;
+  right: 20px;
+  top: 20px;
+  position: absolute;
+  font-weight: bold;
+  font-style: oblique;
+}
+nav {
+  background-color: #e1f2db;
+  color: black;
+  text-align: center;
+  padding: 2px;
+  font-size: small;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+  margin: 0 20px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.aside {
+  background-color: #eff1ef;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-height:80vh;
+  
+}
+.aside ul {
+  list-style: none;
+  padding: 0;
+}
+.aside ul li {
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  font-size: small;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #afc2bc;
+}
+.links {
+  background-color: #2d5f4e;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+}
+/* .section {
+  background-color: #f8f9e7;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  text-align: center;
+  padding: 20px;
+} */
+.section {
+  background-color: #f8f9e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  text-align: center;
+  padding: 20px;
+  gap: 20px;
+}
+section h2 {
+  font-size: 1.2em;
+}
+section img {
+  width: 50%;
+  display: block;
+}
+#plotly-graph-container {
+  width: 70%;  
+  height: auto;  
+  margin: 0 auto;  
+}
+section button {
+  background-color: #2d5f4e;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+section a {
+  color: white;
+}
+section button:hover {
+  background-color: #1e4634;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: footer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #2d5f4e;
+  text-align: center;
+  color: #e1f2db;
+}
+footer p {
+  margin: 0;
+}
+footer a {
+  color: #e1f2db;
+}
+.uni {
+  font-weight: bolder;
+  font-size: large;
+}
+.weblink {
+  font-weight: lighter;
+  font-size: smaller;
+}
+.nav {
+  grid-area: nav;
+}
+.aside {
+  grid-area: aside;
+}
+.section {
+  grid-area: content;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: 80px 40px minmax(100px, auto) 120px;
+  grid-template-areas:
+    "header header header header header header header header header"
+    "nav nav nav nav nav nav nav nav nav"
+    "aside aside content content content content content content content"
+    "footer footer footer footer footer footer footer footer footer";
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s, font-weight 0.3s;
+}
+nav ul li a:hover {
+  font-weight: bold;
+  background-color: #d7ebd4;
+}
+@media (max-width: 767px) {
+ 
+  .grid-container {
+    grid-template-areas:
+      "header"
+      "nav"
+      "content"
+      "footer";
+    grid-template-columns:  1fr;
+  }
+  #plotly-graph-container {
+    width: 100%; 
+    height: auto; 
+    margin: 0 auto; 
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 2;
+    justify-content: center;
+    font-size: smaller;
+  }
+  .footer{
+    gap:10px;
+  }
+  section img{
+    width: 100%;
+  }
+  
+  .header h1,
+  .welcome {
+    width: 50%;
+    text-align: left;
+    padding: 10px 0;
+  }
+  nav ul {
+    display:inline-block;
+  }
+  .aside {
+    width: 70%;
+    height:75%;
+    position: fixed;
+    top: 114px;
+    left: -100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
+  .aside.open {
+    left: 0;
+  }
+  .aside {
+    transform: translateX(-100%);
+  }
+
+  .aside.open {
+    transform: translateX(0);
+  }
+  nav {
+    position: relative;
+    background-color: #e1f2db;
+    color: black;
+    text-align: center;
+    padding: 2px;
+    font-size: small;
+  }
+
+  .menu-toggle {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #0d2b09;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: small;
+    padding: 3px 6px;
+    z-index: 1001;
+  }
+
+  .menu-toggle:hover {
+    background-color: #b0d3c3;
+  }
+  .section{
+
+    height: 70vh;
+  }
+}
+
+.menu-toggle.active {
+  background-color: #e1f2db;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+      "header header header header header header header header"
+      "nav nav nav nav nav nav nav nav"
+      "aside aside content content content content content content"
+      "footer footer footer footer footer footer footer footer";
+  }
+  .aside {
+    height: auto;
+    padding: 0px 10px 10px 10px;
+    position: static;
+    width: auto;
+  }
+  .aside ul li {
+    font-size: small;
+  }
+  .section img {
+    width: 75%;
+  }
+  footer {
+    padding: 15px;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+@media (min-width: 1025px) {
+  .grid-container {
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-areas:
+      "header header header header header header header header header"
+      "nav nav nav nav nav nav nav nav nav"
+      "aside aside content content content content content content content"
+      "footer footer footer footer footer footer footer footer footer";
+  }
+  .aside {
+    height: calc(100vh);
+    padding: 0px 10px 10px 10px;
+    position: static;
+    width: auto;
+  }
+  .aside ul li {
+    font-size: small;
+  }
+  .section img {
+    width: 50%;
+  }
+  footer {
+    padding: 20px;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
