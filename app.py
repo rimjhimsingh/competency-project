@@ -76,7 +76,7 @@ def plot_student_competency_scores_comprehensive(data, student_name, competency_
     - competency_index: int, the index of the competency (0-indexed)
     """
 
-    # this is hardcoded for rows and columns need to be made general
+    # this is hardcoded for rows and columns need to be made general, with actual formatted data
     # Assuming each competency block spans 7 rows including the title row
 
     start_row = competency_index * 7 + 1  

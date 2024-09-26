@@ -117,11 +117,21 @@ section img {
   width: 50%;
   display: block;
 }
-#plotly-graph-container {
+/* #plotly-graph-container {
   width: 70%;  
   height: auto;  
   margin: 0 auto;  
-}
+} */
+
+#plotly-graph-container {
+  width: 100%;  /* Adjust width as needed */
+  height: 600px; /* Set a fixed height */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  margin: 0 auto;
+} 
+
+
 section button {
   background-color: #2d5f4e;
   color: white;
