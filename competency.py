@@ -196,15 +196,15 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
     semesters, student_scores, target_scores = zip(*sorted_data)
 
     # Create the Plotly figure
-    fig = go.Figure()
+    fig = go.Figure()    
 
     # Plot student's scores
     fig.add_trace(go.Scatter(
         x=semesters,
         y=student_scores,
         mode='lines+markers',
-        name='Student Scores',
-        text=[f"Score: {s}" for s in student_scores],
+        name='Student Score',
+        text=[f"Your Score: {s}" for s in student_scores],
         hoverinfo='text',
         marker=dict(color='Green', size=15),
         line=dict(color='Green', width=2)
@@ -215,11 +215,45 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
         x=semesters,
         y=target_scores,
         mode='lines+markers',
-        name='Target Scores',
+        name='Target Score',
         text=[f"Target: {t}" for t in target_scores],
         hoverinfo='text',
         marker=dict(color='Red', size=8),
         line=dict(color='Red', width=2)
+    ))
+    fig.add_trace(go.Scatter(
+    x=[None], y=[None],  # No actual data points
+    mode='markers',
+    marker=dict(color='blue', size=5),
+    name="NR: Needs Redirection"
+))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],  # No actual data points
+        mode='markers',
+        marker=dict(color='blue', size=5),
+        name="B: Beginning"
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],  # No actual data points
+        mode='markers',
+        marker=dict(color='blue', size=5),
+        name="E: Emerging"
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],  # No actual data points
+        mode='markers',
+        marker=dict(color='blue', size=5),
+        name="P: Progressing"
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],  # No actual data points
+        mode='markers',
+        marker=dict(color='blue', size=5),
+        name="C: Capable"
     ))
 
     # Update the layout of the plot with a manual y-axis category order
@@ -233,9 +267,9 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
             ticktext=score_order  # Corresponding labels for the y-axis
         ),
         plot_bgcolor='#fefae0',
-        paper_bgcolor='#faedcd',
-        height=1000,
-        width=1000
+        paper_bgcolor='#faedcd'
+        #height=600,
+        #width=600
     )
 
     return pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
@@ -257,9 +291,9 @@ def about():
 def contact():
     return render_template('Contact.html')
 
-@app.route('/deviation')
-@app.route('/deviation')
-def deviation():
+@app.route('/progression')
+@app.route('/progression')
+def progression():
     student_id = 'B00768785'  # Replace with actual student ID
     # competency_column = '1.1 mid'  # Specify the competency column
     competency_column = 'competency_1_1_mid'  # Specify the competency column
@@ -271,8 +305,8 @@ def deviation():
     # Generate the comprehensive plot
     plot_html = plot_student_competency_scores_comprehensive(student_id, competency_column, target_scores_df)
 
-    # Render the 'deviation.html' template, passing the plot HTML
-    return render_template('deviation.html', plot_html=plot_html)
+    # Render the 'progression.html' template, passing the plot HTML
+    return render_template('progression.html', plot_html=plot_html)
 
 @app.route('/plot/<student_id>')
 def plot_png(student_id):
