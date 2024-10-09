@@ -74,6 +74,7 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
     fig = go.Figure()
     valid_scores = {'B', 'E', 'P', 'C', 'NR', 'NA'}  # Set of valid scores
 
+
     for student in student_data:
         print(student)
         # Loop over each competency in the DataFrame
@@ -85,10 +86,7 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
                 continue  # Skip this loop iteration if the score is invalid
 
             student_score = grade_mapping[student[score_index]]  # Convert letter grade to number
-            print(student[score_index])   
-            print ("===")
-            print(student_score)
-            print ("\n")
+        
            
             competency_name = comp
             target_score = grade_mapping[target_scores_df.loc[mapped_semester, comp]]  # Convert target score to number
@@ -113,6 +111,12 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
     fig.update_layout(
     title=f"Difference graph for {student_id} in {mapped_semester}",
     xaxis_title="Deviation from Target",
+    xaxis=dict(
+        zeroline=True,  # Show the zeroline
+        zerolinecolor='#7CF3A0',  # Set the color of the zeroline
+        zerolinewidth=6  # Set the width of the zeroline
+    ),
+
     yaxis_title="Competency",
     plot_bgcolor='#fefae0',
     paper_bgcolor='#faedcd',
