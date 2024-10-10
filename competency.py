@@ -65,6 +65,26 @@ grade_mapping = {
     'C': 4,
     'NA': 0  # Not assessed yet
 }
+#Feedback function
+
+def fetch_student_feedback(student_id, semester):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    # Adjust the query to fetch the feedback columns for the student
+    query = """
+    SELECT feedback_1, feedback_2, feedback_3, feedback_4, feedback_5
+    FROM StudentCompetencies
+    WHERE student_id = %s AND semester_id = %s;
+    """
+    cursor.execute(query, (student_id, semester))
+    feedback_data = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+
+    return feedback_data
+
 
 def plot_student_competency_scores_plotly(student_id, semester, target_scores_df):
     mapped_semester = semester_mapping[semester]
@@ -137,7 +157,7 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
         name='Slow down!'
     ))
     fig.update_layout(
-    title=f"Difference graph for {student_id} in {mapped_semester}",
+    title=f"Comprehensive graph sample student",
     xaxis_title="Deviation from Target",
     xaxis=dict(
         zeroline=True, 
@@ -277,7 +297,7 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
     ))
 
     fig.update_layout(
-        title=f"Performance: {competency_name} - {student_id} vs Target",
+        title=f"Progression graph sample student",
         xaxis_title="Semesters",
         yaxis_title="Scores",
         yaxis=dict(
@@ -298,8 +318,9 @@ def index():
     student_id = 'B00768785'
     semester = 'Fall 2024' 
     target_scores_df = load_target_scores()
+    feedback_data = fetch_student_feedback(student_id, semester) #call feedback function
     plot_html = plot_student_competency_scores_plotly(student_id, semester, target_scores_df)
-    return render_template('/index.html', plot_html=plot_html)
+    return render_template('/index.html', plot_html=plot_html, feedback_data=feedback_data)
 
 
 @app.route('/about')

@@ -71,6 +71,20 @@
         <h2>Comprehensive Graph</h2>
         <div id="plotly-graph-container">{{ plot_html | safe }}</div>
         <button><a href="{{ url_for('progression') }}">Progression Graphs</a></button>
+        <div id="feedback-section">
+          <h3>Feedback for the Student</h3>
+          {% if feedback_data %}
+          <ul>
+              <li>Feedback Domain 1: {{ feedback_data[0] }}</li>
+              <li>Feedback Domain 2: {{ feedback_data[1] }}</li>
+              <li>Feedback Domain 3: {{ feedback_data[2] }}</li>
+              <li>Feedback Domain 4: {{ feedback_data[3] }}</li>
+              <li>Feedback Domain 5: {{ feedback_data[4] }}</li>
+          </ul>
+          {% else %}
+          <p>No feedback available for this semester.</p>
+          {% endif %}
+      </div>
       </section>
       <footer class="footer">
         <p class="uni">Decker College of Nursing and Health Sciences<br /></p>
