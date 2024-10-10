@@ -17,7 +17,6 @@ db_config = {
     'raise_on_warnings': True
 }
 
-
 # Semester mapping from specific to generic
 semester_mapping = {
     'Fall 2024': 'Fall Year 1',
@@ -79,31 +78,21 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
     
     shortened_labels = [shorten_competency_name(comp) for comp in target_scores_df.columns]
     print("helloo")
-    #print(shortened_labels) #these are right
 
     for student in student_data:
-        #print(student)
-        # Loop over each competency in the DataFrame
-        score_index = 4  # Starting index of scores in the student tuple
-        # for comp in target_scores_df.columns:
+        
+        score_index = 4  
         zip_res = zip(target_scores_df.columns, shortened_labels)
         zip_list = list(zip_res)
-        #print(zip_list)
         
         for comp, short_label in zip(target_scores_df.columns, shortened_labels):
             
             # Skip if the score is not valid or is feedback
             if student[score_index] not in valid_scores:
                 score_index += 1
-                #continue  # Skip this loop iteration if the score is invalid
 
             student_score = grade_mapping[student[score_index]]  # Convert letter grade to number
-            #print(student_score) #these scores are right
-            competency_name = short_label #wrong here
-            #here missing vals
-            print(comp)
-            print(short_label)
-            
+            competency_name = short_label 
             target_score = grade_mapping[target_scores_df.loc[mapped_semester, comp]]  # Convert target score to number
 
             deviation = student_score - target_score
@@ -112,7 +101,6 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
             # Plot each point with the appropriate deviation and message
             fig.add_trace(go.Scatter(
                 x=[0, deviation],
-                # y=[competency_name, competency_name],
                 y=[short_label, short_label],
                 mode='lines+markers',
                 showlegend=False,
@@ -123,15 +111,14 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
                 line=dict(width=1.5, dash='solid' if deviation != 0 else 'solid')
             ))
 
-            score_index += 1  # Move to the next score in the tuple
-
-    # Adding custom traces for the legend (to describe the colors)
+            score_index += 1 
+            
     fig.add_trace(go.Scatter(
         x=[None], y=[None],
         mode='markers',
         marker=dict(size=12, color='yellow'),
         showlegend=True,
-        name='Right on track'  # Custom label for yellow
+        name='Right on track'  
     ))
 
     fig.add_trace(go.Scatter(
@@ -139,7 +126,7 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
         mode='markers',
         marker=dict(size=12, color='#FB6090'),
         showlegend=True,
-        name='Needs more work'  # Custom label for pink
+        name='Needs more work' 
     ))
 
     fig.add_trace(go.Scatter(
@@ -147,15 +134,16 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
         mode='markers',
         marker=dict(size=12, color='#887BB0'),
         showlegend=True,
-        name='Slow down!'  # Custom label for purple
+        name='Slow down!'
     ))
     fig.update_layout(
     title=f"Difference graph for {student_id} in {mapped_semester}",
     xaxis_title="Deviation from Target",
     xaxis=dict(
-        zeroline=True,  # Show the zeroline
-        zerolinecolor='#fdff6b',  # Set the color of the zeroline
-        zerolinewidth=40  # Set the width of the zeroline
+        zeroline=True, 
+        zerolinecolor='#fdff6b', 
+        zerolinewidth=40 
+        
     ),
 
     yaxis_title="Competency",
@@ -165,8 +153,7 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
     width=1000    
 )
     return pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
-#functions for comprehensive
-# Function to fetch student competency data for a specific column (competency)
+
 def fetch_student_competency_data(student_id, competency_column):
     connection = get_db_connection()
     cursor = connection.cursor()
@@ -185,65 +172,54 @@ def fetch_student_competency_data(student_id, competency_column):
 
 # Function to fetch target scores (assuming you have target scores in your CSV or database)
 def fetch_target_competency_scores(competency_column):
-    target_scores_df = load_target_scores()  # Assuming this loads the target scores from a CSV file
+    target_scores_df = load_target_scores()  
     return target_scores_df[competency_column]
+
 def plot_student_competency_scores_comprehensive(student_id, competency_column, target_scores_df):
     """
     Plots a line graph using Plotly showing the scores of a specific student and the target scores for a specific competency.
     This function handles all semesters for the student.
     """
-    # Define the order of semesters you want to display in the plot
     semester_order = ['Fall 2024', 'Spring 2025', 'Summer 2025', 'Fall 2025',
                       'Spring 2026', 'Summer 2026', 'Fall 2026', 'Spring 2027', 'Summer 2027']
 
-    # Define the y-axis order for scores and map scores to their respective indices
     score_order = ['NA', 'NR', 'B', 'E', 'P', 'C']
     score_mapping = {score: idx for idx, score in enumerate(score_order)}
 
-    # Fetch the student's score for the competency across all semesters
     student_data = fetch_student_competency_data(student_id, competency_column)
     print(f"student_data: {student_data}")
     
-    competency_name = competency_column  # Using competency_column as the name
+    competency_name = competency_column  
 
     semesters = []
     student_scores = []
     target_scores = []
 
-    # Collect semesters, student scores, and target scores
     for student in student_data:
-        semester = student[0]  # First element is the semester_id
-        mapped_semester = semester_mapping[semester]  # Map to generic semester names for target scores
+        semester = student[0]  
+        mapped_semester = semester_mapping[semester]  
         
-        student_score = student[1]  # Student score for this semester
-        target_score = target_scores_df.loc[mapped_semester, competency_column]  # Get the target score
+        student_score = student[1]  
+        target_score = target_scores_df.loc[mapped_semester, competency_column]  
         
-        # Skip if student score or target score is 'NA'
         if student_score == 'NA':
             continue
 
-
-        # Map the scores to their numeric indices
-        student_score_mapped = score_mapping.get(student_score, 0)  # Map letter grade to index
-        target_score_mapped = score_mapping.get(target_score, 0)  # Map target score to index
+        student_score_mapped = score_mapping.get(student_score, 0) 
+        target_score_mapped = score_mapping.get(target_score, 0)  
         
-        # Debug: Check collected data
         print(f"Semester: {semester}, Student Score: {student_score}, Target Score: {target_score}")
 
         semesters.append(semester)
         student_scores.append(student_score_mapped)
         target_scores.append(target_score_mapped)
 
-    # Sort the data based on the predefined semester order
     sorted_data = sorted(zip(semesters, student_scores, target_scores), key=lambda x: semester_order.index(x[0]))
 
-    # Unzip the sorted data
     semesters, student_scores, target_scores = zip(*sorted_data)
 
-    # Create the Plotly figure
     fig = go.Figure()    
 
-    # Plot student's scores
     fig.add_trace(go.Scatter(
         x=semesters,
         y=student_scores,
@@ -255,7 +231,6 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
         line=dict(color='Green', width=2)
     ))
 
-    # Plot target scores
     fig.add_trace(go.Scatter(
         x=semesters,
         y=target_scores,
@@ -267,49 +242,48 @@ def plot_student_competency_scores_comprehensive(student_id, competency_column, 
         line=dict(color='Red', width=2)
     ))
     fig.add_trace(go.Scatter(
-    x=[None], y=[None],  # No actual data points
+    x=[None], y=[None],  
     mode='markers',
     marker=dict(color='blue', size=5),
     name="NR: Needs Redirection"
 ))
 
     fig.add_trace(go.Scatter(
-        x=[None], y=[None],  # No actual data points
+        x=[None], y=[None],  
         mode='markers',
         marker=dict(color='blue', size=5),
         name="B: Beginning"
     ))
 
     fig.add_trace(go.Scatter(
-        x=[None], y=[None],  # No actual data points
+        x=[None], y=[None],  
         mode='markers',
         marker=dict(color='blue', size=5),
         name="E: Emerging"
     ))
 
     fig.add_trace(go.Scatter(
-        x=[None], y=[None],  # No actual data points
+        x=[None], y=[None],  
         mode='markers',
         marker=dict(color='blue', size=5),
         name="P: Progressing"
     ))
 
     fig.add_trace(go.Scatter(
-        x=[None], y=[None],  # No actual data points
+        x=[None], y=[None], 
         mode='markers',
         marker=dict(color='blue', size=5),
         name="C: Capable"
     ))
 
-    # Update the layout of the plot with a manual y-axis category order
     fig.update_layout(
         title=f"Performance: {competency_name} - {student_id} vs Target",
         xaxis_title="Semesters",
         yaxis_title="Scores",
         yaxis=dict(
             tickmode='array',
-            tickvals=list(range(len(score_order))),  # Numeric values for the y-axis
-            ticktext=score_order  # Corresponding labels for the y-axis
+            tickvals=list(range(len(score_order))),  
+            ticktext=score_order  
         ),
         plot_bgcolor='#fefae0',
         paper_bgcolor='#faedcd'
@@ -339,24 +313,19 @@ def contact():
 @app.route('/progression')
 @app.route('/progression')
 def progression():
-    student_id = 'B00768785'  # Replace with actual student ID
-    # competency_column = '1.1 mid'  # Specify the competency column
-    competency_column = 'competency_1_1_mid'  # Specify the competency column
-    
+    student_id = 'B00768785'  
+    competency_column = 'competency_1_1_mid'  
 
-    # Load the target scores
     target_scores_df = load_target_scores()
 
-    # Generate the comprehensive plot
     plot_html = plot_student_competency_scores_comprehensive(student_id, competency_column, target_scores_df)
 
-    # Render the 'progression.html' template, passing the plot HTML
     return render_template('progression.html', plot_html=plot_html)
 
 @app.route('/plot/<student_id>')
 def plot_png(student_id):
     plot_type = request.args.get('type', 'plotly')
-    semester = "Fall 2024"  # This might be dynamically determined or passed as an argument
+    semester = "Fall 2024" 
     target_scores_df = load_target_scores()
     html_content = plot_student_competency_scores_plotly(student_id, semester, target_scores_df)
 
