@@ -10,10 +10,10 @@ app = Flask(__name__)
 
 # Database configuration
 db_config = {
-    'user': 'rimjhim',  # Update with your username
-    'password': 'DeckerCompetency2024',  # Update with your password
-    'host': 'localhost',  # Update with your database host
-    'database': 'competencydata',  # Update with your database name
+    'user': 'rimjhim',  
+    'password': 'DeckerCompetency2024',  
+    'host': 'localhost',   
+    'database': 'competencydata',  
     'raise_on_warnings': True
 }
 
@@ -73,22 +73,37 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
 
     fig = go.Figure()
     valid_scores = {'B', 'E', 'P', 'C', 'NR', 'NA'}  # Set of valid scores
-
+    def shorten_competency_name(competency_name):
+        parts = competency_name.replace('competency_', '').split('_')
+        return f"{parts[0]}.{parts[1]} {parts[2]}"
+    
+    shortened_labels = [shorten_competency_name(comp) for comp in target_scores_df.columns]
+    print("helloo")
+    #print(shortened_labels) #these are right
 
     for student in student_data:
-        print(student)
+        #print(student)
         # Loop over each competency in the DataFrame
         score_index = 4  # Starting index of scores in the student tuple
-        for comp in target_scores_df.columns:
+        # for comp in target_scores_df.columns:
+        zip_res = zip(target_scores_df.columns, shortened_labels)
+        zip_list = list(zip_res)
+        #print(zip_list)
+        
+        for comp, short_label in zip(target_scores_df.columns, shortened_labels):
+            
             # Skip if the score is not valid or is feedback
             if student[score_index] not in valid_scores:
                 score_index += 1
-                continue  # Skip this loop iteration if the score is invalid
+                #continue  # Skip this loop iteration if the score is invalid
 
             student_score = grade_mapping[student[score_index]]  # Convert letter grade to number
-        
-           
-            competency_name = comp
+            #print(student_score) #these scores are right
+            competency_name = short_label #wrong here
+            #here missing vals
+            print(comp)
+            print(short_label)
+            
             target_score = grade_mapping[target_scores_df.loc[mapped_semester, comp]]  # Convert target score to number
 
             deviation = student_score - target_score
@@ -97,24 +112,50 @@ def plot_student_competency_scores_plotly(student_id, semester, target_scores_df
             # Plot each point with the appropriate deviation and message
             fig.add_trace(go.Scatter(
                 x=[0, deviation],
-                y=[competency_name, competency_name],
+                # y=[competency_name, competency_name],
+                y=[short_label, short_label],
                 mode='lines+markers',
+                showlegend=False,
                 name=competency_name,
                 text=f"Student: {student[score_index]}, Target: {target_scores_df.loc[mapped_semester, comp]}, {message}",
                 hoverinfo='text',
-                marker=dict(size=[12, 16 if deviation == 0 else 12], color='#887BB0' if deviation > 0 else ('#FB6090' if deviation < 0 else 'yellow')),
+                marker=dict(size=[12, 16 if deviation == 0 else 12], color='#887BB0' if deviation > 0 else ('#FB6090' if deviation < 0 else '#7CF3A0')),
                 line=dict(width=1.5, dash='solid' if deviation != 0 else 'solid')
             ))
 
             score_index += 1  # Move to the next score in the tuple
 
+    # Adding custom traces for the legend (to describe the colors)
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=12, color='yellow'),
+        showlegend=True,
+        name='Right on track'  # Custom label for yellow
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=12, color='#FB6090'),
+        showlegend=True,
+        name='Needs more work'  # Custom label for pink
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None],
+        mode='markers',
+        marker=dict(size=12, color='#887BB0'),
+        showlegend=True,
+        name='Slow down!'  # Custom label for purple
+    ))
     fig.update_layout(
     title=f"Difference graph for {student_id} in {mapped_semester}",
     xaxis_title="Deviation from Target",
     xaxis=dict(
         zeroline=True,  # Show the zeroline
-        zerolinecolor='#7CF3A0',  # Set the color of the zeroline
-        zerolinewidth=6  # Set the width of the zeroline
+        zerolinecolor='#fdff6b',  # Set the color of the zeroline
+        zerolinewidth=40  # Set the width of the zeroline
     ),
 
     yaxis_title="Competency",

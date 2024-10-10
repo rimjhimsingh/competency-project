@@ -153,7 +153,7 @@ def get_student_competency_data(student_id, competency_id):
 student_id = 'B00768785'
 competency_id = '1.1_mid'  # Make sure to pass the competency ID as it is in the mappings
 result_df = get_student_competency_data(student_id, competency_id)
-print(result_df)
+#print(result_df)
 
 # Function to get all competency scores for a student for a specific semester
 def get_student_scores_for_semester(student_id, semester_id):
@@ -180,11 +180,13 @@ def get_student_scores_for_semester(student_id, semester_id):
 
     return df
 
-# Example usage:
 student_id = 'B00768785'
 semester_id = 'Fall 2024'
 result_df = get_student_scores_for_semester(student_id, semester_id)
 print(result_df)
+# Print each row on a new line
+for index, row in result_df.iterrows():
+    print(row)
 
 
 # Close the database connection after the entire process is done
